@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Packaging Optimization Report</title>
+  <link rel="stylesheet" href="optimization.css" />
+</head>
+<body>
+
+  <div class="report-header">
+    <h1>📦 Packaging Optimization Report</h1>
+  </div>
+
+  <div class="section">
+    <p>Suggested optimal size and material based on product details.</p>
+    <br>
+    <h2>Product Information</h2>
+    <p><strong>Product:</strong> <span id="productName"></span></p>
+    <p><strong>Dimensions:</strong> <span id="dimensions"></span></p>
+    <p><strong>Box Material:</strong> <span id="boxMaterial"></span></p>
+  </div>
+
+  <div class="section">
+    <h2>Recommended Box Dimensions</h2>
+    <input type="text" id="recommendedDimensions" readonly />
+  </div>
+
+  <div class="section">
+    <h2>Simulation Results</h2>
+    <div class="results-grid">
+      <div><strong>Truck Load</strong><p id="truckLoad">--</p></div>
+      <div><strong>Fill Rate</strong><p id="fillRate">--</p></div>
+      <div><strong>Cost Saved/Delivery</strong><p id="costSaved">--</p></div>
+      <div><strong>CO₂ Saved</strong><p id="co2Saved">--</p></div>
+    </div>
+  </div>
+
+  <div class="button-row">
+    <button id="downloadBtn"><a href="simulation.html">View 3D Simulation</a></button>
+    <button id="simulateBtn">Download PDF report</button>
+  </div>
+
+  <script src="optimization.js"></script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+body {
+  padding: 40px 20px;
+  font-family: 'Inter', sans-serif;
+  background: #f8f8f8;
+  max-width: 800px;
+  margin-top:3em;
+}
+
+a{
+    text-decoration: none;
+    color: #fff;
+}
+a:visited{
+
+    text-decoration:none;
+    color: #fff;
+}
+
+.report-header {
+  text-align:left;
+  margin-bottom: 40px;
+  margin-left:1.2em;
+}
+
+.report-header .icon {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+p {
+  margin: 8px 0;
+  color: #424242;
+}
+
+.section {
+  margin-bottom: 40px;
+  margin-left:2.5em;
+}
+
+input#recommendedDimensions {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+h2{
+    font-weight:600;
+    font-size:1.5rem;
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.results-grid div p {
+  margin: 5px 0 0;
+  font-weight: 500;
+  font-size: 1rem;
+  color: #676767;
+}
+
+.button-row {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-top:3em;
+}
+
+.button-row button {
+  padding: 12px 44px;
+  font-size: 1rem;
+  border-radius:5px;
+  font-weight:500;
+  border: none;
+  cursor: pointer;
+}
+
+#downloadBtn {
+  background: #007BFF;
+  color: #fff;
+}
+
+#simulateBtn {
+  background: #007BFF;
+  color: #fff;
+}
