@@ -13,7 +13,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   document.getElementById("boxMaterial").textContent = data.fragility;
 
   try {
-    // POST data to Flask backend
     const response = await fetch("http://127.0.0.1:5000/predict", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -23,7 +22,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         width: data.width,
         height: data.height,
         fragility: data.fragility,
-        padding: data.padding // ✅ Must match Flask expectation
+        padding: data.padding
       })
     });
 
@@ -32,10 +31,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if (result.error) throw new Error(result.error);
 
-    // Update page with prediction results
     document.getElementById("recommendedDimensions").value =
       `${result.recommended_length}cm × ${result.recommended_width}cm × ${result.recommended_height}cm`;
-
     document.getElementById("truckLoad").textContent = `${result.truck_load} boxes`;
     document.getElementById("fillRate").textContent = `${result.fill_rate}%`;
     document.getElementById("costSaved").textContent = `$${result.cost_saved}`;
@@ -44,5 +41,13 @@ document.addEventListener("DOMContentLoaded", async () => {
   } catch (error) {
     console.error("Prediction failed:", error);
     alert("Something went wrong while fetching optimization data.");
+  }
+
+  // ✅ Add button navigation
+  const simulateBtn = document.getElementById("simulateBtn");
+  if (simulateBtn) {
+    simulateBtn.addEventListener("click", () => {
+      window.location.href = "simulation.html";
+    });
   }
 });
