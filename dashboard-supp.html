@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZeroWasteCarton Dashboard - Walmart Supplier Portal</title>
+    <link rel="stylesheet" href="dashboard-supp.css"/>
+    
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo">
+                    <div class="eco-icon">🌱</div>
+                    ZeroWasteCarton
+                </div>
+                <span style="font-size: 14px; opacity: 0.8;">| Supplier Dashboard</span>
+            </div>
+            
+            <div class="user-section">
+                <div class="notifications" onclick="showNotifications()">
+                    <div class="notification-bell">🔔</div>
+                    <div class="notification-count">3</div>
+                </div>
+                
+                <div class="user-profile" onclick="showProfile()">
+                    <div class="user-avatar">JD</div>
+                    <div>
+                        <div style="font-size: 14px; font-weight: 600;">John Doe</div>
+                        <div style="font-size: 12px; opacity: 0.8;">Supplier ID: WM001</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Welcome Section -->
+        <div class="welcome-section">
+            <h1 class="welcome-title">Welcome back, John! 🚀</h1>
+            <p class="welcome-subtitle">Ready to optimize your packaging for sustainability and cost efficiency?</p>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="quick-stats">
+            <div class="stat-card">
+                <div class="stat-icon" style="background: rgba(0,113,206,0.1); color: #0071ce;">📦</div>
+                <div class="stat-value">1,247</div>
+                <div class="stat-label">Products Analyzed</div>
+                <div class="stat-trend trend-up">↗ +12% this month</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon" style="background: rgba(0,166,82,0.1); color: #00a652;">🌱</div>
+                <div class="stat-value">85%</div>
+                <div class="stat-label">Avg Sustainability Score</div>
+                <div class="stat-trend trend-up">↗ +8% improvement</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon" style="background: rgba(255,193,7,0.1); color: #ffc107;">💰</div>
+                <div class="stat-value">$47K</div>
+                <div class="stat-label">Cost Savings</div>
+                <div class="stat-trend trend-up">↗ +23% vs last quarter</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon" style="background: rgba(108,117,125,0.1); color: #6c757d;">⚡</div>
+                <div class="stat-value">2.3t</div>
+                <div class="stat-label">CO2 Reduced</div>
+                <div class="stat-trend trend-up">↗ Carbon footprint down</div>
+            </div>
+        </div>
+
+        <!-- Dashboard Grid -->
+        <div class="dashboard-grid">
+            <!-- Main Panel -->
+            <div class="main-panel">
+                <div class="panel-header">
+                    <h2 class="panel-title">
+                        🧠 AI Packaging Optimizer
+                    </h2>
+                </div>
+                
+                <div class="upload-area" id="uploadArea" onclick="triggerFileUpload()">
+                    <div class="upload-icon">📸</div>
+                    <div class="upload-text">Upload Product Image</div>
+                    <div class="upload-subtext">Drag & drop or click to upload product images for AI analysis</div>
+                    <button class="upload-btn">Choose File</button>
+                </div>
+                
+                <input type="file" id="fileInput" accept="image/*" style="display: none;" onchange="handleFileUpload(event)">
+                
+                <div class="loading" id="loadingArea">
+                    <div class="spinner"></div>
+                    <p>Analyzing your product with AI...</p>
+                </div>
+                
+                <div class="recent-analyses">
+                    <h3 style="margin-bottom: 15px; color: #333;">Recent Analyses</h3>
+                    
+                    <div class="analysis-item">
+                        <div class="analysis-icon">📱</div>
+                        <div class="analysis-info">
+                            <div class="analysis-name">iPhone 15 Pro Max</div>
+                            <div class="analysis-details">Analyzed 2 hours ago • Corrugated B-flute recommended</div>
+                        </div>
+                        <div class="analysis-score">92/100</div>
+                    </div>
+                    
+                    <div class="analysis-item">
+                        <div class="analysis-icon">👕</div>
+                        <div class="analysis-info">
+                            <div class="analysis-name">Cotton T-Shirt Bundle</div>
+                            <div class="analysis-details">Analyzed yesterday • Recycled poly mailer suggested</div>
+                        </div>
+                        <div class="analysis-score">87/100</div>
+                    </div>
+                    
+                    <div class="analysis-item">
+                        <div class="analysis-icon">🎧</div>
+                        <div class="analysis-info">
+                            <div class="analysis-name">Wireless Headphones</div>
+                            <div class="analysis-details">Analyzed 3 days ago • Molded pulp tray recommended</div>
+                        </div>
+                        <div class="analysis-score">94/100</div>
+                    </div>
+                    
+                    <div class="analysis-item">
+                        <div class="analysis-icon">📚</div>
+                        <div class="analysis-info">
+                            <div class="analysis-name">Book Set (5 volumes)</div>
+                            <div class="analysis-details">Analyzed 1 week ago • Single-wall corrugated optimal</div>
+                        </div>
+                        <div class="analysis-score">89/100</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sustainability Score -->
+                <div class="sidebar-panel">
+                    <h3 style="text-align: center; margin-bottom: 20px; color: #333;">Overall Sustainability Score</h3>
+                    <div class="sustainability-score">
+                        <div class="score-circle">
+                            <div class="score-value">85</div>
+                        </div>
+                        <p style="color: #00a652; font-weight: 600;">Excellent Performance!</p>
+                        <p style="font-size: 14px; color: #666; margin-top: 10px;">Your packaging choices are making a positive environmental impact</p>
+                    </div>
+                </div>
+
+                <!-- Recommendations -->
+                <div class="sidebar-panel">
+                    <h3 style="margin-bottom: 20px; color: #333;">🎯 Smart Recommendations</h3>
+                    <div class="recommendations">
+                        <div class="recommendation-item">
+                            <h4>Switch to Recycled Materials</h4>
+                            <p>Using 100% recycled corrugated could boost your score by 8 points</p>
+                        </div>
+                        
+                        <div class="recommendation-item">
+                            <h4>Optimize Box Dimensions</h4>
+                            <p>Right-sizing could reduce material usage by 15% on average</p>
+                        </div>
+                        
+                        <div class="recommendation-item">
+                            <h4>Biodegradable Void Fill</h4>
+                            <p>Replace plastic bubble wrap with mushroom-based alternatives</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="sidebar-panel">
+                    <h3 style="margin-bottom: 20px; color: #333;">⚡ Quick Actions</h3>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <button onclick="viewReports()" style="padding: 12px; background: #0071ce; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s ease;">
+                            📊 View Detailed Reports
+                        </button>
+                        <button onclick="downloadData()" style="padding: 12px; background: #00a652; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s ease;">
+                            📥 Download Analysis Data
+                        </button>
+                        <button onclick="scheduleConsultation()" style="padding: 12px; background: #ffc107; color: #333; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s ease;">
+                            📞 Schedule Consultation
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Features -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 30px;">
+            <div class="sidebar-panel">
+                <h3 style="margin-bottom: 15px; color: #333;">📈 Trending Materials</h3>
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #eee;">
+                        <span>Recycled Corrugated</span>
+                        <span style="color: #00a652; font-weight: 600;">↗ 34%</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #eee;">
+                        <span>Mushroom Packaging</span>
+                        <span style="color: #00a652; font-weight: 600;">↗ 28%</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #eee;">
+                        <span>Compostable Mailers</span>
+                        <span style="color: #00a652; font-weight: 600;">↗ 21%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar-panel">
+                <h3 style="margin-bottom: 15px; color: #333;">🏆 Achievement Badges</h3>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; text-align: center;">
+                    <div style="padding: 15px; background: rgba(0,166,82,0.1); border-radius: 10px;">
+                        <div style="font-size: 24px; margin-bottom: 5px;">🌱</div>
+                        <div style="font-size: 12px; font-weight: 600; color: #00a652;">Eco Pioneer</div>
+                    </div>
+                    <div style="padding: 15px; background: rgba(0,113,206,0.1); border-radius: 10px;">
+                        <div style="font-size: 24px; margin-bottom: 5px;">💡</div>
+                        <div style="font-size: 12px; font-weight: 600; color: #0071ce;">Innovator</div>
+                    </div>
+                    <div style="padding: 15px; background: rgba(255,193,7,0.1); border-radius: 10px;">
+                        <div style="font-size: 24px; margin-bottom: 5px;">⭐</div>
+                        <div style="font-size: 12px; font-weight: 600; color: #ffc107;">Top Performer</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="dashboard-supp.js"> </script>
+</body>
+</html>

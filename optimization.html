@@ -2,55 +2,87 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Packaging Optimization Report</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="optimization.css" />
 </head>
 <body>
   <div class="container">
-      <div class="report-header">
-        <h1>Packaging Optimization Report</h1>
+    <header class="header">
+      <div class="logo">
+        <i class="fas fa-cube"></i> Packify
       </div>
+      <div class="header-actions">
+        <button class="btn btn-primary" id="sendReportBtn">
+          <i class="fas fa-paper-plane"></i> Send Report
+        </button>
+        <button class="btn btn-secondary" id="simulateBtn">
+          <i class="fas fa-cube"></i> View 3D Simulation
+        </button>
+      </div>
+    </header>
 
-      <div class="section intro">
+    <div class="report-container">
+      <div class="report-header">
+        <h1><i class="fas fa-check-circle"></i> Packaging Optimization Report</h1>
         <p>Suggested optimal size and material based on product details.</p>
       </div>
 
-      <div class="section">
+      <div class="product-info">
         <h2>Product Information</h2>
-        <div class="product-tab">
-          <p><strong>Product:</strong> <span id="productName"></span></p>
-          <hr>
-          <p><strong>Dimensions:</strong> <span id="dimensions"></span></p>
-          <hr>
-          <p><strong>Box Material:</strong> <span id="boxMaterial"></span></p>
+        <div class="info-grid">
+          <div class="info-item">
+            <span class="info-label">Product:</span>
+            <span class="info-value" id="productName">--</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Dimensions:</span>
+            <span class="info-value" id="dimensions">--</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Box Material:</span>
+            <span class="info-value" id="boxMaterial">--</span>
+          </div>
         </div>
       </div>
 
-      <div class="section">
+      <div class="recommendations">
         <h2>Recommended Box Dimensions</h2>
         <input type="text" id="recommendedDimensions" readonly />
       </div>
 
-    <div class="section">
-      <h2>Simulation Results</h2>
       <div class="results-grid">
-        <div><div class="results-grid-icon-1 boxes"></div>  <div class="results-grid-text"><span >Truck Load Increase</span><p id="truckLoad">--</p></div></div>
-        <div><div class="results-grid-icon-2 fill"></div>  <div class="results-grid-text"><span >Fill Rate</span><p id="fillRate">--</p></div></div>
-        <div><div class="results-grid-icon-1 savings"></div>  <div class="results-grid-text"><span >Cost Saved/Delivery</span><p id="costSaved">--</p></div></div>
-        <div><div class="results-grid-icon-2 air"></div>  <div class="results-grid-text"><span >CO₂ Saved</span><p id="co2Saved">--</p></div>
-      </div>
+        <div class="result-card">
+          <div class="result-icon truck">
+            <i class="fas fa-cubes"></i>
+          </div>
+          <div class="result-value" id="truckLoad">--</div>
+          <div class="result-label">Truck Load Increase</div>
+        </div>
+        <div class="result-card">
+          <div class="result-icon fill">
+            <i class="fas fa-chart-area"></i>
+          </div>
+          <div class="result-value" id="fillRate">--</div>
+          <div class="result-label">Fill Rate</div>
+        </div>
+        <div class="result-card">
+          <div class="result-icon cost">
+            <i class="fas fa-piggy-bank"></i>
+          </div>
+          <div class="result-value" id="costSaved">--</div>
+          <div class="result-label">Cost Saved/Delivery</div>
+        </div>
+        <div class="result-card">
+          <div class="result-icon co2">
+            <i class="fas fa-leaf"></i>
+          </div>
+          <div class="result-value" id="co2Saved">--</div>
+          <div class="result-label">CO₂ Saved</div>
+        </div>
       </div>
     </div>
-    <div class="button-row">
-      <button id="simulateBtn">View 3D Simulation</button>
-      <button id="downloadBtn">Send PDF report</button>
-    </div>
-  </div>
-
-  <div class="plants">
-    <div class="plant-wrapper"><div class="plant-left"></div></div>
-    <div class="plant-wrapper"><div class="plant-right"></div></div>
   </div>
 
   <script src="optimization.js"></script>

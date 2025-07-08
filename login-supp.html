@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Packify - Login / Signup</title>
+  <link rel="stylesheet" href="login-inventory.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter&family=Montserrat&family=Nunito&display=swap" rel="stylesheet">
+</head>
+<body class="bg-image">
+  <div class="container">
+    <header>
+      <div class="logo">
+        <img src="images/logo.png" alt="Packify Logo" />
+      </div>
+    </header>
+
+    <main>
+
+      <!-- Login Form -->
+      <form class="auth-form" id="loginForm">
+        <h1>Login</h1>
+        <div class="input-field">
+          <label for="loginEmail">Email</label>
+          <input type="email" id="loginEmail" placeholder="Enter your email" required />
+        </div>
+        <div class="input-field">
+          <label for="loginPassword">Password</label>
+          <input type="password" id="loginPassword" placeholder="Enter your password" required />
+        </div>
+        <button type="submit" class="generate-btn">Login</button>
+      </form>
+
+      <!-- Signup Form -->
+      <form class="auth-form hidden" id="signupForm">
+        <h1>Sign Up</h1>
+        <div class="input-field">
+          <label for="signupName">Full Name</label>
+          <input type="text" id="signupName" placeholder="Enter your name" required />
+        </div>
+        <div class="input-field">
+          <label for="signupEmail">Email</label>
+          <input type="email" id="signupEmail" placeholder="Enter your email" required />
+        </div>
+        <div class="input-field">
+          <label for="signupPassword">Password</label>
+          <input type="password" id="signupPassword" placeholder="Create a password" required />
+        </div>
+        <button type="submit" class="generate-btn">Create Account</button>
+      </form>
+    </main>
+
+    <div class="tab-switch">
+        <button id="loginTab" class="tab active">Login</button>
+        <button id="signupTab" class="tab">Sign Up</button>
+    </div>
+  </div>
+
+  <script src="login-supp.js"></script>
+</body>
+</html>

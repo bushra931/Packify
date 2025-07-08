@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Packify - Product Info</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Top Logo Header -->
+  <div class="logo-container">
+    <div class="logo">
+      <i class="fas fa-cube"></i> Packify
+    </div>
+  </div>
+
+  <!-- Main Form Container -->
+  <div class="container">
+    <p class="heading">Product Info</p>
+    <p class="intro-text">Enter the product dimensions or upload an image, and provide quantity and fragility.</p>
+
+    <form class="product-form" id="productForm">
+      <div class="input-field">
+        <label for="productName">Product Name</label>
+        <input type="text" id="productName" placeholder="Name" />
+      </div>
+
+      <div class="input-group">
+        <label>Product Dimensions</label>
+        <div class="dimension-alignment">
+          <div class="dimension-inputs">
+            <input type="number" id="length" placeholder="Length" /> <span>cm</span>
+            <input type="number" id="width" placeholder="Width" /> <span>cm</span>
+            <input type="number" id="height" placeholder="Height" /> <span>cm</span>
+          </div>
+          <div class="divider">or</div>
+          <div class="upload-section">
+            <button type="button" class="upload-btn">⬆ Upload Image</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="input-field" id="fragility">
+        <label for="materialType">Fragility / Material Type</label>
+        <select id="materialType">
+          <option>Select...</option>
+          <option>Fragile</option>
+          <option>Normal</option>
+          <option>Heavy Duty</option>
+        </select>
+      </div>
+
+      <div class="input-field" id="category">
+        <label for="category">Product Category</label>
+        <select id="category">
+          <option>Select...</option>
+          <option>Electronics</option>
+          <option>Clothing</option>
+          <option>Home Appliance</option>
+          <option>Books</option>
+          <option>Accessories</option>
+        </select>
+      </div>
+
+      <div class="input-field" id="padding">
+        <label for="paddingType">Padding Type</label>
+        <select id="paddingType">
+          <option>Select...</option>
+          <option>Foam</option>
+          <option>Bubble Wrap</option>
+          <option>Paper</option>
+        </select>
+      </div>
+
+      <button type="submit" class="generate-btn">Generate Optimized Box</button>
+    </form>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

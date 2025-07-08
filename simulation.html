@@ -3,21 +3,32 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>3D simulation</title>
+  <title>3D Simulation - Packify</title>
   <link rel="stylesheet" href="simulation.css" />
-
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
   <div class="container">
+    <header class="header">
+      <div class="logo">
+        <i class="fas fa-cube"></i>
+        Packify
+      </div>
+      <a href="optimization.html" class="btn btn-secondary">
+        <i class="fas fa-tachometer-alt"></i> Back to Report
+      </a>
+    </header>
+
+    <div class="report-container">
       <div class="report-header">
-        <h1>3D Simulation</h1>
+        <h1><i class="fas fa-cube"></i> 3D Packaging Simulation</h1>
+        <p>This is a 3D view of the suggested optimized packaging dimensions.</p>
       </div>
 
-      <div class="section intro">
-        <p>Following is the 3D veiw of the new packaging according to the suggested dimensions for optimised sizing.</p>
-      </div>
       <div id="scene-container"></div>
+    </div>
   </div>
+
   <script type="module" src="simulation.js"></script>
 </body>
 </html>

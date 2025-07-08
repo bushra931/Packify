@@ -8,9 +8,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   // Display static product info
-  document.getElementById("productName").textContent = data.productName;
+  document.getElementById("productName").textContent = data.productName || "--";
   document.getElementById("dimensions").textContent = `${data.length}cm × ${data.width}cm × ${data.height}cm`;
-  document.getElementById("boxMaterial").textContent = data.fragility;
+  document.getElementById("boxMaterial").textContent = data.fragility || "--";
 
   try {
     const response = await fetch("http://127.0.0.1:5000/predict", {
@@ -43,11 +43,19 @@ document.addEventListener("DOMContentLoaded", async () => {
     alert("Something went wrong while fetching optimization data.");
   }
 
-  // ✅ Add button navigation
+  // Handle "View 3D Simulation" button
   const simulateBtn = document.getElementById("simulateBtn");
   if (simulateBtn) {
     simulateBtn.addEventListener("click", () => {
       window.location.href = "simulation.html";
+    });
+  }
+
+  // Handle "Send Report" button
+  const sendReportBtn = document.getElementById("sendReportBtn");
+  if (sendReportBtn) {
+    sendReportBtn.addEventListener("click", () => {
+      alert("📤 Report sent to the Walmart team!");
     });
   }
 });
