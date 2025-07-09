@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Packify - Dashboard Inventory</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="dashboard-inventory.css" />
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="logo">
+        <i class="fas fa-cube"></i> Packify
+      </div>
+    </header>
+
+    <div class="optimize-container">
+      <p class="instruction">
+        Optimize the following products to increase truckload, decrease product volume and increase overall profit.
+      </p>
+      <!-- Product cards will be inserted here -->
+    </div>
+  </div>
+
+  <script type="module">
+    import { db } from './firebase.js';
+    import {
+      collection,
+      getDocs,
+      query,
+      where
+    } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+
+    const container = document.querySelector(".optimize-container");
+
+    async function loadProducts() {
+      try {
+        const q = query(collection(db, "supplierProducts"), where("status", "!=", "optimized"));
+        const snapshot = await getDocs(q);
+
+        if (snapshot.empty) {
+          container.innerHTML += `<p>No pending products for optimization.</p>`;
+          return;
+        }
+
+        snapshot.forEach(doc => {
+          const data = doc.data();
+          const id = doc.id;
+
+          const sentDate = data.timestamp?.seconds
+            ? new Date(data.timestamp.seconds * 1000).toLocaleDateString()
+            : 'N/A';
+
+          const card = document.createElement("div");
+          card.className = "product-card";
+          card.innerHTML = `
+            <div>
+              <strong>${data.productName || "Unnamed Product"}</strong><br />
+              Sent on: ${sentDate}
+            </div>
+            <a href="product_opt_entry.html?id=${id}" class="optimize-btn">Optimize Product</a>
+          `;
+          container.appendChild(card);
+        });
+      } catch (err) {
+        console.error("🔥 Failed to load products:", err);
+        container.innerHTML += `<p style="color:red;">Error loading products.</p>`;
+      }
+    }
+
+    loadProducts();
+  </script>
+</body>
+</html>

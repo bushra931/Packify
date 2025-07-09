@@ -18,13 +18,14 @@ document.addEventListener("DOMContentLoaded", () => {
     loginForm.classList.add("hidden");
   });
 
-  // Optional form handlers
   loginForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const email = document.getElementById("loginEmail").value;
     const password = document.getElementById("loginPassword").value;
     console.log("Logging in with:", email, password);
-    // Add real auth logic here
+
+    // ✅ Redirect after login
+    window.location.href = "dashboard-inventory.html";
   });
 
   signupForm.addEventListener("submit", (e) => {
@@ -33,6 +34,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const email = document.getElementById("signupEmail").value;
     const password = document.getElementById("signupPassword").value;
     console.log("Signing up with:", name, email, password);
-    // Add signup logic here
+
+    // ✅ Redirect after signup
+    window.location.href = "dashboard-inventory.html";
   });
 });

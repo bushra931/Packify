@@ -4,7 +4,7 @@ import { Search, Package, Truck, Leaf, AlertTriangle, CheckCircle, Upload, Camer
 const WalmartInventoryManagement = () => {
   const [activeTab, setActiveTab] = useState('inventory');
   const [searchTerm, setSearchTerm] = useState('');
-  const [filterCategory, setFilterCategory] = useState('all');
+  const [filterCategory, setFilterCategory] = useState('all'); 
   const [products, setProducts] = useState([
     {
       id: 'WM001',

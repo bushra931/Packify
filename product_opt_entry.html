@@ -14,6 +14,9 @@
     <div class="logo">
       <i class="fas fa-cube"></i> Packify
     </div>
+    <a href="dashboard-inventory.html" class="btn btn-secondary">
+      <i class="fas fa-tachometer-alt"></i> Back to Dashboard
+    </a>
   </div>
 
   <!-- Main Form Container -->
@@ -42,7 +45,8 @@
         </div>
       </div>
 
-      <div class="input-field" id="fragility">
+      <!-- ✅ Cleaned up input-field wrapper IDs -->
+      <div class="input-field">
         <label for="materialType">Fragility / Material Type</label>
         <select id="materialType">
           <option>Select...</option>
@@ -52,7 +56,7 @@
         </select>
       </div>
 
-      <div class="input-field" id="category">
+      <div class="input-field">
         <label for="category">Product Category</label>
         <select id="category">
           <option>Select...</option>
@@ -64,7 +68,7 @@
         </select>
       </div>
 
-      <div class="input-field" id="padding">
+      <div class="input-field">
         <label for="paddingType">Padding Type</label>
         <select id="paddingType">
           <option>Select...</option>
@@ -78,6 +82,6 @@
     </form>
   </div>
 
-  <script src="script.js"></script>
+  <script src="script.js" type="module"></script>
 </body>
 </html>

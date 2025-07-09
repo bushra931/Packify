@@ -1,3 +1,6 @@
+import { db } from './firebase.js';
+import { collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
 document.addEventListener("DOMContentLoaded", async () => {
   const data = JSON.parse(localStorage.getItem("productData"));
 
@@ -31,6 +34,37 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if (result.error) throw new Error(result.error);
 
+    // Store optimized result in Firebase
+    try {
+      await addDoc(collection(db, "optimizations"), {
+        productName: data.productName || "Unnamed Product",
+        category: data.category,
+        dimensions: {
+          original: {
+            length: data.length,
+            width: data.width,
+            height: data.height
+          },
+          recommended: {
+            length: result.recommended_length,
+            width: result.recommended_width,
+            height: result.recommended_height
+          }
+        },
+        fragility: data.fragility,
+        padding: data.padding,
+        truckLoad: result.truck_load,
+        fillRate: result.fill_rate,
+        costSaved: result.cost_saved,
+        co2Saved: result.co2_saved,
+        timestamp: new Date()
+      });
+      console.log("✅ Optimization result saved to Firebase");
+    } catch (e) {
+      console.error("❌ Failed to save optimization result to Firebase:", e);
+    }
+
+    // Populate UI
     document.getElementById("recommendedDimensions").value =
       `${result.recommended_length}cm × ${result.recommended_width}cm × ${result.recommended_height}cm`;
     document.getElementById("truckLoad").textContent = `${result.truck_load} boxes`;

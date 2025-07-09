@@ -133,6 +133,24 @@
             font-weight: bold;
         }
 
+        .inventory-btn {
+            padding: 10px 20px;
+            background: #f4f3f1;
+            color: #2a2a2a;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .inventory-btn:hover {
+            background: #f4f3f1;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
         /* Main Content */
         .main-content {
             max-width: 1400px;
