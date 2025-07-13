@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Truck Simulation - Packify</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="truckStm.css" />
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="logo">
+        <i class="fas fa-cube"></i> Packify
+      </div>
+      <div class="header-actions">
+        <a href="optimization.html" class="btn btn-secondary">
+          <i class="fas fa-arrow-left"></i> Back to Optimization
+        </a>
+        <a href="dashboard1.html" class="btn btn-secondary">
+          <i class="fas fa-tachometer-alt"></i> Back to Dashboard
+        </a>
+      </div>
+    </header>
+
+    <div class="report-container">
+      <div class="report-header">
+        <h1><i class="fas fa-truck-moving"></i> Truck Simulation</h1>
+        <p>Visualizing how the optimized boxes fit into the delivery truck.</p>
+      </div>
+
+      <!-- Sketchfab Embed -->
+      <div id="scene-container">
+        <img src="images/truck-kun.png" alt="Truck Simulation" />
+        </div>
+
+        <div class="truck-load-info">
+        <span>Earlier Truck Load: <strong id="earlierTruckLoad">100</strong></span>
+        <span class="arrow">→</span>
+        <span>Now Truck Load: <strong id="nowTruckLoad">122</strong></span>
+        </div>
+
+    </div>
+  </div>
+</body>
+</html>

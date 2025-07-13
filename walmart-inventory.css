@@ -6,14 +6,14 @@
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: #333;
   min-height: 100vh;
   font-size: 20px; /* Further increased base font size */
 }
 
 .container {
-  max-width: 1000px;
+  max-width:1400px;;
   margin: 0 auto;
   padding: 40px;
 }
@@ -26,7 +26,7 @@ body {
   box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content:space-between;
 }
 
 .logo {
@@ -41,6 +41,25 @@ body {
   margin-right: 14px;
   font-size: 34px;
   color: #ffc220;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #4CAF50, #45a049);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
 }
 
 .optimize-container {
@@ -84,3 +103,43 @@ body {
 .optimize-btn:hover {
   background-color: #7edc7e;
 }
+
+.table-wrapper {
+  overflow-x: auto;
+  margin-top: 20px;
+}
+
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.product-table th,
+.product-table td {
+  text-align: left;
+  padding: 14px 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.product-table th {
+  background: #f4f6f8;
+  font-weight: 600;
+}
+
+.optimize-link {
+  color: #4CAF50;
+  text-decoration: underline;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.optimize-link:hover {
+  text-decoration: none;
+  color: #388e3c;
+}
+
+

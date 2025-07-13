@@ -8,7 +8,7 @@ import {
 document.addEventListener("DOMContentLoaded", async () => {
   const form = document.getElementById("productForm");
 
-  // ⬇️ Step 1: Get Product ID from URL
+  // Get Product ID from URL
   const urlParams = new URLSearchParams(window.location.search);
   const productId = urlParams.get("id");
 
@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     return;
   }
 
-  // ⬇️ Step 2: Fetch product from Firestore
+  // Fetch product from Firestore
   try {
     const docRef = doc(db, "supplierProducts", productId);
     const docSnap = await getDoc(docRef);
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (docSnap.exists()) {
       const data = docSnap.data();
 
-      // ⬇️ Step 3: Populate the form with fetched data
+      // Populate form with fetched data
       document.getElementById("productName").value = data.productName || '';
       document.getElementById("length").value = data.length || '';
       document.getElementById("width").value = data.width || '';
@@ -34,6 +34,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       document.getElementById("category").value = data.category || '';
       document.getElementById("paddingType").value = data.padding || '';
 
+      // Populate box dimensions if available
+      if (data.boxLength) document.getElementById("boxLength").value = data.boxLength;
+      if (data.boxWidth)  document.getElementById("boxWidth").value  = data.boxWidth;
+      if (data.boxHeight) document.getElementById("boxHeight").value = data.boxHeight;
+
     } else {
       alert("❌ Product not found.");
     }
@@ -41,7 +46,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error("🔥 Error fetching product:", error);
   }
 
-  // ⬇️ Step 4: Handle form submission
+  // Handle form submission
   if (form) {
     form.addEventListener("submit", async function (e) {
       e.preventDefault();
@@ -54,8 +59,14 @@ document.addEventListener("DOMContentLoaded", async () => {
       const category = document.getElementById("category").value;
       const padding = document.getElementById("paddingType").value;
 
+      // Box dimensions
+      const boxLength = document.getElementById("boxLength").value.trim();
+      const boxWidth = document.getElementById("boxWidth").value.trim();
+      const boxHeight = document.getElementById("boxHeight").value.trim();
+
       if (!productName || !length || !width || !height ||
-        fragility === "Select..." || category === "Select..." || padding === "Select...") {
+        fragility === "Select..." || category === "Select..." || padding === "Select..." ||
+        !boxLength || !boxWidth || !boxHeight) {
         alert("Please fill all fields correctly.");
         return;
       }
@@ -68,8 +79,11 @@ document.addEventListener("DOMContentLoaded", async () => {
         fragility,
         category,
         padding,
-        status: "optimized",                         // ✅ Mark as optimized
-        optimizedAt: new Date()                      // ✅ Track optimization time
+        boxLength: parseFloat(boxLength),
+        boxWidth: parseFloat(boxWidth),
+        boxHeight: parseFloat(boxHeight),
+        status: "optimized",
+        optimizedAt: new Date()
       };
 
       try {

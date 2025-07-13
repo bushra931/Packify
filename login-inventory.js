@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("Logging in with:", email, password);
 
     // ✅ Redirect after login
-    window.location.href = "dashboard-inventory.html";
+    window.location.href = "dashboard1.html";
   });
 
   signupForm.addEventListener("submit", (e) => {
@@ -36,6 +36,6 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("Signing up with:", name, email, password);
 
     // ✅ Redirect after signup
-    window.location.href = "dashboard-inventory.html";
+    window.location.href = "dashboard1.html";
   });
 });

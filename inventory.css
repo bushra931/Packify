@@ -33,9 +33,12 @@ body {
     gap: 1rem;
 }
 
-.header-icon {
-    font-size: 2rem;
+.header-left i {
+  margin-right: 10px;
+  color: #ffc220;
+  font-size: 2rem;
 }
+
 
 .header-text h1 {
     font-size: 1.25rem;

@@ -262,7 +262,7 @@
         </div>
       </div>
 
-      <!-- Dimensions -->
+      <!-- Product Dimensions -->
       <div class="form-section">
         <h2 class="section-title">Product Dimensions</h2>
         <div class="form-grid three-col">
@@ -288,15 +288,44 @@
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="divider"><span>or</span></div>
-
-        <div class="upload-area" onclick="document.getElementById('imageUpload').click()">
-          <i class="fas fa-upload"></i>
-          <h3>Upload Product Image</h3>
-          <p>Click to upload or drag a file</p>
-          <input type="file" id="imageUpload" accept="image/*" style="display: none;" />
+      <!-- Box Dimensions -->
+      <div class="form-section">
+        <h2 class="section-title">Box Dimensions</h2>
+        <div class="form-grid three-col">
+          <div class="form-group">
+            <label for="boxLength">Length</label>
+            <div class="dimension-input">
+              <input type="number" id="boxLength" step="0.1" required />
+              <span>cm</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="boxWidth">Width</label>
+            <div class="dimension-input">
+              <input type="number" id="boxWidth" step="0.1" required />
+              <span>cm</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="boxHeight">Height</label>
+            <div class="dimension-input">
+              <input type="number" id="boxHeight" step="0.1" required />
+              <span>cm</span>
+            </div>
+          </div>
         </div>
+      </div>
+
+      <!-- Upload or image -->
+      <div class="divider"><span>or</span></div>
+
+      <div class="upload-area" onclick="document.getElementById('imageUpload').click()">
+        <i class="fas fa-upload"></i>
+        <h3>Upload Product Image</h3>
+        <p>Click to upload or drag a file</p>
+        <input type="file" id="imageUpload" accept="image/*" style="display: none;" />
       </div>
 
       <!-- Packaging -->
@@ -340,56 +369,59 @@
       </button>
     </form>
   </div>
+
+  <!-- Firebase & Script -->
   <script type="module" src="firebase.js"></script>
   <script type="module">
     import { db } from './firebase.js';
-  import { collection, addDoc } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+    import { collection, addDoc } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
 
-  const form = document.getElementById('supplierForm');
+    const form = document.getElementById('supplierForm');
 
-  form.addEventListener('submit', async function (e) {
-    e.preventDefault();
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
 
-    const data = {
-      productName: document.getElementById('productName').value,
-      category: document.getElementById('productCategory').value,
-      length: document.getElementById('length').value,
-      width: document.getElementById('width').value,
-      height: document.getElementById('height').value,
-      quantity: document.getElementById('quantity').value,
-      weight: document.getElementById('weight').value,
-      fragility: document.getElementById('fragility').value,
-      material: document.getElementById('material').value,
-      status:'pending',
-      timestamp: new Date()
-    };
+      const data = {
+        productName: document.getElementById('productName').value,
+        category: document.getElementById('productCategory').value,
+        length: document.getElementById('length').value,
+        width: document.getElementById('width').value,
+        height: document.getElementById('height').value,
+        boxLength: document.getElementById('boxLength').value,
+        boxWidth: document.getElementById('boxWidth').value,
+        boxHeight: document.getElementById('boxHeight').value,
+        quantity: document.getElementById('quantity').value,
+        weight: document.getElementById('weight').value,
+        fragility: document.getElementById('fragility').value,
+        material: document.getElementById('material').value,
+        status: 'pending',
+        timestamp: new Date()
+      };
 
-    console.log("📤 Submitting to Firebase:", data);
-
-    try {
-      await addDoc(collection(db, 'supplierProducts'), data);
-      alert('✅ Data sent for optimization!');
-      form.reset();
-    } catch (error) {
-      console.error('❌ Firebase write error:', error);
-      alert('Something went wrong.');
-    }
-  });
+      try {
+        await addDoc(collection(db, 'supplierProducts'), data);
+        alert('✅ Data sent for optimization!');
+        form.reset();
+      } catch (error) {
+        console.error('❌ Firebase write error:', error);
+        alert('Something went wrong.');
+      }
+    });
 
     // Image upload feedback
     document.getElementById('imageUpload').addEventListener('change', function () {
-        const file = this.files[0];
-        if (file) {
+      const file = this.files[0];
+      if (file) {
         const uploadArea = document.querySelector('.upload-area');
         uploadArea.innerHTML = `
-            <i class="fas fa-check-circle" style="color: #28a745;"></i>
-            <h3>Image Uploaded</h3>
-            <p>${file.name}</p>
+          <i class="fas fa-check-circle" style="color: #28a745;"></i>
+          <h3>Image Uploaded</h3>
+          <p>${file.name}</p>
         `;
         uploadArea.style.background = '#d4edda';
         uploadArea.style.borderColor = '#28a745';
-        }
+      }
     });
-    </script>
+  </script>
 </body>
 </html>

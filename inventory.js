@@ -30,18 +30,36 @@ async function fetchProductsFromFirebase() {
         id: docSnap.id,
         productName: data.productName || "Unnamed",
         category: data.category || "Uncategorized",
-        currentStock: data.currentStock || 0,
-        status: data.status || "optimized", // Default
-        suggestedPackaging: data.suggestedPackaging || {},
-        lastUpdated: data.timestamp?.toDate?.().toISOString().split("T")[0] || "—"
+        fragility: data.fragility || "—",
+        padding: data.padding || "—",
+        truckLoad: data.truckLoad || 0,
+        fillRate: data.fillRate || 0,
+        costSaved: data.costSaved || 0,
+        co2Saved: data.co2Saved || 0,
+        material: data.material || "—",
+        status: data.status || "optimized",
+
+        // Flat dimension fields
+        length: data.length || 0,
+        width: data.width || 0,
+        height: data.height || 0,
+
+        boxLength: data.boxLength || 0,
+        boxWidth: data.boxWidth || 0,
+        boxHeight: data.boxHeight || 0,
+
+        timestamp: data.timestamp?.toDate?.().toISOString().split("T")[0] || "—"
       };
     });
+
     filteredProducts = [...products];
-    console.log("📦 Fetched products:", products);
+    console.log("✅ Full product list fetched:", products);
   } catch (error) {
-    console.error("❌ Error fetching products:", error);
+    console.error("❌ Error fetching from Firebase:", error);
   }
 }
+
+
 
 function setupEventListeners() {
   document.querySelectorAll('.nav-tab').forEach(tab => {
@@ -79,8 +97,7 @@ function handleCategoryFilter() {
 
 function filterProducts(searchTerm, category) {
   filteredProducts = products.filter(product => {
-    const matchesSearch = product.productName.toLowerCase().includes(searchTerm) ||
-      product.id.toLowerCase().includes(searchTerm);
+    const matchesSearch = product.productName.toLowerCase().includes(searchTerm);
     const matchesCategory = category === 'all' || product.category === category;
     return matchesSearch && matchesCategory;
   });
@@ -99,17 +116,16 @@ function renderProducts() {
 
 function createProductRow(product) {
   const status = product.status || "optimized";
-  const score = product.suggestedPackaging?.sustainabilityScore || 0;
-  const co2 = product.suggestedPackaging?.co2Reduction || "—";
+  const score = product.suggestedPackaging?.sustainabilityScore || 30;
+  const co2 = product.co2Saved || "—";
 
   const row = document.createElement('tr');
   row.innerHTML = `
     <td>
       <div class="product-name">${product.productName}</div>
-      <div class="product-id">${product.id}</div>
     </td>
     <td>${product.category}</td>
-    <td>${product.currentStock} units</td>
+    <td>${product.truckLoad} boxes</td>
     <td>
       <span class="status-badge status-${status}">
         ${getStatusIcon(status)}
@@ -124,9 +140,9 @@ function createProductRow(product) {
         <span>${score}/100</span>
       </div>
     </td>
-    <td class="co2-reduction">${co2}</td>
+    <td class="co2-reduction">${co2} kg CO₂</td>
     <td>
-      <button class="action-btn" onclick="showProductDetails('${product.id}')">View Details</button>
+      <button class="action-btn" onclick='viewProductDetails(${JSON.stringify(product)})'>View Report</button>
       <button class="action-btn approve" onclick="approveProduct('${product.id}')">Approve</button>
     </td>
   `;
@@ -156,7 +172,6 @@ function updateSummaryCards() {
   document.getElementById('pending-count').textContent = pending;
 }
 
-// ✅ Approve product and update in Firebase
 async function approveProduct(productId) {
   const product = products.find(p => p.id === productId);
   if (product) {
@@ -179,7 +194,6 @@ async function approveProduct(productId) {
   }
 }
 
-// Modal functions
 function showProductDetails(productId) {
   currentProduct = products.find(p => p.id === productId);
   if (!currentProduct) return;
@@ -188,9 +202,8 @@ function showProductDetails(productId) {
 
   const productInfoContent = document.getElementById('product-info-content');
   productInfoContent.innerHTML = `
-    <div class="info-item"><span class="info-label">Product ID:</span>${currentProduct.id}</div>
     <div class="info-item"><span class="info-label">Category:</span>${currentProduct.category}</div>
-    <div class="info-item"><span class="info-label">Current Stock:</span>${currentProduct.currentStock}</div>
+    <div class="info-item"><span class="info-label">Truck Load:</span>${currentProduct.truckLoad} boxes</div>
   `;
 
   const packaging = currentProduct.suggestedPackaging || {};
@@ -207,7 +220,7 @@ function showProductDetails(productId) {
         <div class="score-dot"></div>
         <span>Sustainability Score: ${packaging.sustainabilityScore || 0}/100</span>
       </div>
-      <span class="co2-reduction-badge">CO₂ Reduction: ${packaging.co2Reduction || '—'}</span>
+      <span class="co2-reduction-badge">CO₂ Reduction: ${currentProduct.co2Saved || '—'} kg</span>
     </div>
   `;
 
@@ -222,3 +235,9 @@ function hideProductModal() {
 function hideUploadModal() {
   uploadModal.classList.remove('show');
 }
+
+// ✅ Correct function used by inline onclick with full product object
+window.viewProductDetails = function(product) {
+  localStorage.setItem("selectedProductId", product.id);
+  window.location.href = "optimization.html"; // or whatever report page you use
+};
