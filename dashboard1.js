@@ -348,7 +348,7 @@
             
             // Welcome message
             setTimeout(() => {
-                showNotification('Welcome to ZeroWasteCarton Dashboard!', 'info');
+                showNotification('Welcome to Packify Inventory Dashboard!', 'info');
             }, 1000);
         });
 

@@ -1,3 +1,6 @@
+import { db } from './firebase.js';
+import { collection, getDocs, doc, updateDoc, getDoc, addDoc } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+
 document.addEventListener("DOMContentLoaded", async () => {
   const data = JSON.parse(localStorage.getItem("productData"));
 
